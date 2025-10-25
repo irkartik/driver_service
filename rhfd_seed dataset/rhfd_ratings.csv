@@ -1,0 +1,55 @@
+rating_id,trip_id,rider_rating,driver_rating,comment
+1,12,4,5,
+2,26,5,5,
+3,40,5,5,
+4,41,4,4,Smooth ride
+5,46,4,5,On time
+6,52,5,5,
+7,55,5,4,
+8,57,5,4,Smooth ride
+9,60,5,4,
+10,61,5,4,Good driving
+11,62,4,4,Clean car
+12,74,4,4,Smooth ride
+13,80,5,5,Clean car
+14,83,4,5,
+15,109,4,5,
+16,119,4,4,
+17,145,5,5,On time
+18,151,5,5,Smooth ride
+19,159,5,5,Smooth ride
+20,165,5,4,On time
+21,170,5,5,Clean car
+22,171,5,5,Clean car
+23,184,4,5,
+24,185,4,4,Good driving
+25,189,5,5,On time
+26,191,5,4,On time
+27,194,4,5,Clean car
+28,202,4,4,Clean car
+29,204,4,4,Good driving
+30,208,4,4,
+31,218,5,5,
+32,228,5,4,Clean car
+33,245,4,4,Smooth ride
+34,248,5,5,Smooth ride
+35,254,4,5,
+36,263,5,5,Good driving
+37,269,5,4,On time
+38,274,5,5,Smooth ride
+39,280,4,5,
+40,281,4,5,Smooth ride
+41,285,4,4,Clean car
+42,286,5,4,On time
+43,287,5,4,Clean car
+44,303,4,5,On time
+45,305,4,4,Clean car
+46,306,5,4,Smooth ride
+47,320,5,5,Clean car
+48,327,4,4,Clean car
+49,331,4,4,Good driving
+50,337,4,4,Clean car
+51,339,5,4,Clean car
+52,342,4,4,Good driving
+53,343,4,5,Good driving
+54,349,4,4,
