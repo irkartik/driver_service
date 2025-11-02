@@ -1,0 +1,1016 @@
+{
+	"info": {
+		"_postman_id": "driver-service-api-collection",
+		"name": "Driver Service API",
+		"description": "Complete API collection for the Driver Service - a Django REST Framework based microservice for managing driver data in a ride-hailing system.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "api_version",
+			"value": "v1",
+			"type": "string"
+		},
+		{
+			"key": "driver_id",
+			"value": "1",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Driver CRUD Operations",
+			"item": [
+				{
+					"name": "List All Drivers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number for pagination",
+									"disabled": true
+								},
+								{
+									"key": "page_size",
+									"value": "10",
+									"description": "Number of items per page",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Retrieve a paginated list of all drivers in the system."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Driver by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/{{driver_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								"{{driver_id}}",
+								""
+							]
+						},
+						"description": "Retrieve detailed information about a specific driver by their ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Driver",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John Doe\",\n    \"phone\": \"9876543210\",\n    \"vehicle_type\": \"Sedan\",\n    \"vehicle_plate\": \"ABC123\",\n    \"is_active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								""
+							]
+						},
+						"description": "Create a new driver in the system. Phone number must be 10 digits and vehicle plate must be unique."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Driver (Full)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John Doe Updated\",\n    \"phone\": \"9876543210\",\n    \"vehicle_type\": \"SUV\",\n    \"vehicle_plate\": \"ABC123\",\n    \"is_active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/{{driver_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								"{{driver_id}}",
+								""
+							]
+						},
+						"description": "Completely update a driver's information. All fields must be provided."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Driver (Partial)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"vehicle_type\": \"Hatchback\",\n    \"is_active\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/{{driver_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								"{{driver_id}}",
+								""
+							]
+						},
+						"description": "Partially update a driver's information. Only the fields provided will be updated."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Driver",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/{{driver_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								"{{driver_id}}",
+								""
+							]
+						},
+						"description": "Delete a driver from the system. This action cannot be undone."
+					},
+					"response": []
+				}
+			],
+			"description": "Basic CRUD operations for managing driver records."
+		},
+		{
+			"name": "Driver Filters & Search",
+			"item": [
+				{
+					"name": "Filter by Active Status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/?is_active=true",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								""
+							],
+							"query": [
+								{
+									"key": "is_active",
+									"value": "true",
+									"description": "Filter by active status (true/false)"
+								}
+							]
+						},
+						"description": "Filter drivers by their active status using query parameter."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by Vehicle Type",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/?vehicle_type=Sedan",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								""
+							],
+							"query": [
+								{
+									"key": "vehicle_type",
+									"value": "Sedan",
+									"description": "Filter by vehicle type (Bike, Auto, Hatchback, Sedan, SUV)"
+								}
+							]
+						},
+						"description": "Filter drivers by vehicle type. Valid options: Bike, Auto, Hatchback, Sedan, SUV."
+					},
+					"response": []
+				},
+				{
+					"name": "Search Drivers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/?search=John",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "John",
+									"description": "Search by name, phone, or vehicle plate"
+								}
+							]
+						},
+						"description": "Search drivers by name, phone number, or vehicle plate number."
+					},
+					"response": []
+				},
+				{
+					"name": "Order Drivers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/?ordering=name",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								""
+							],
+							"query": [
+								{
+									"key": "ordering",
+									"value": "name",
+									"description": "Order by field (driver_id, name, created_at, vehicle_type). Prefix with '-' for descending"
+								}
+							]
+						},
+						"description": "Order drivers by various fields. Use '-' prefix for descending order (e.g., -name for reverse alphabetical)."
+					},
+					"response": []
+				},
+				{
+					"name": "Combined Filters",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/?is_active=true&vehicle_type=Sedan&search=John&ordering=-created_at",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								""
+							],
+							"query": [
+								{
+									"key": "is_active",
+									"value": "true"
+								},
+								{
+									"key": "vehicle_type",
+									"value": "Sedan"
+								},
+								{
+									"key": "search",
+									"value": "John"
+								},
+								{
+									"key": "ordering",
+									"value": "-created_at"
+								}
+							]
+						},
+						"description": "Combine multiple filters, search, and ordering parameters in a single request."
+					},
+					"response": []
+				}
+			],
+			"description": "Advanced filtering, searching, and sorting capabilities for driver listings."
+		},
+		{
+			"name": "Driver Custom Actions",
+			"item": [
+				{
+					"name": "Get Active Drivers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/active/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								"active",
+								""
+							]
+						},
+						"description": "Retrieve all active drivers. Supports pagination, search, and filters."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Inactive Drivers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/inactive/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								"inactive",
+								""
+							]
+						},
+						"description": "Retrieve all inactive drivers. Supports pagination, search, and filters."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Drivers by Vehicle Type",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/by_vehicle_type/?vehicle_type=Sedan",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								"by_vehicle_type",
+								""
+							],
+							"query": [
+								{
+									"key": "vehicle_type",
+									"value": "Sedan",
+									"description": "Vehicle type to filter by (required)"
+								}
+							]
+						},
+						"description": "Get drivers filtered by specific vehicle type. The vehicle_type parameter is required."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Driver Statistics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/stats/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								"stats",
+								""
+							]
+						},
+						"description": "Get comprehensive statistics about drivers including total count, active/inactive counts, and vehicle type distributions."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Driver Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/{{driver_id}}/details/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								"{{driver_id}}",
+								"details",
+								""
+							]
+						},
+						"description": "Get detailed information about a specific driver."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Driver Status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/{{driver_id}}/status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								"{{driver_id}}",
+								"status"
+							]
+						},
+						"description": "Get the current status and basic information of a specific driver."
+					},
+					"response": []
+				}
+			],
+			"description": "Custom actions for retrieving driver information in specific ways."
+		},
+		{
+			"name": "Driver Status Management",
+			"item": [
+				{
+					"name": "Toggle Driver Status",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/{{driver_id}}/toggle_status/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								"{{driver_id}}",
+								"toggle_status",
+								""
+							]
+						},
+						"description": "Toggle the active status of a driver (active to inactive or vice versa)."
+					},
+					"response": []
+				},
+				{
+					"name": "Toggle Driver Status (PATCH)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/{{driver_id}}/toggle_status/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								"{{driver_id}}",
+								"toggle_status",
+								""
+							]
+						},
+						"description": "Toggle the active status of a driver using PATCH method."
+					},
+					"response": []
+				},
+				{
+					"name": "Activate Driver",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/{{driver_id}}/activate/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								"{{driver_id}}",
+								"activate",
+								""
+							]
+						},
+						"description": "Activate a driver by setting their status to active."
+					},
+					"response": []
+				},
+				{
+					"name": "Activate Driver (PATCH)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/{{driver_id}}/activate/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								"{{driver_id}}",
+								"activate",
+								""
+							]
+						},
+						"description": "Activate a driver using PATCH method."
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate Driver",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/{{driver_id}}/deactivate/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								"{{driver_id}}",
+								"deactivate",
+								""
+							]
+						},
+						"description": "Deactivate a driver by setting their status to inactive."
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate Driver (PATCH)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/{{driver_id}}/deactivate/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								"{{driver_id}}",
+								"deactivate",
+								""
+							]
+						},
+						"description": "Deactivate a driver using PATCH method."
+					},
+					"response": []
+				}
+			],
+			"description": "Operations for managing driver active/inactive status."
+		},
+		{
+			"name": "Vehicle Type Examples",
+			"item": [
+				{
+					"name": "Create Driver - Bike",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Raj Kumar\",\n    \"phone\": \"9123456780\",\n    \"vehicle_type\": \"Bike\",\n    \"vehicle_plate\": \"KA01AB1234\",\n    \"is_active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								""
+							]
+						},
+						"description": "Example: Create a driver with Bike vehicle type."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Driver - Auto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Suresh Babu\",\n    \"phone\": \"9876543211\",\n    \"vehicle_type\": \"Auto\",\n    \"vehicle_plate\": \"KA02BC5678\",\n    \"is_active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								""
+							]
+						},
+						"description": "Example: Create a driver with Auto vehicle type."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Driver - Hatchback",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Amit Sharma\",\n    \"phone\": \"9123456789\",\n    \"vehicle_type\": \"Hatchback\",\n    \"vehicle_plate\": \"DL03CD9012\",\n    \"is_active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								""
+							]
+						},
+						"description": "Example: Create a driver with Hatchback vehicle type."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Driver - Sedan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Priya Singh\",\n    \"phone\": \"9988776655\",\n    \"vehicle_type\": \"Sedan\",\n    \"vehicle_plate\": \"MH04EF3456\",\n    \"is_active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								""
+							]
+						},
+						"description": "Example: Create a driver with Sedan vehicle type."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Driver - SUV",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Vikram Patel\",\n    \"phone\": \"9876501234\",\n    \"vehicle_type\": \"SUV\",\n    \"vehicle_plate\": \"GJ05FG7890\",\n    \"is_active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/{{api_version}}/drivers/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"drivers",
+								""
+							]
+						},
+						"description": "Example: Create a driver with SUV vehicle type."
+					},
+					"response": []
+				}
+			],
+			"description": "Example requests for creating drivers with different vehicle types (Bike, Auto, Hatchback, Sedan, SUV)."
+		}
+	]
+}
+
